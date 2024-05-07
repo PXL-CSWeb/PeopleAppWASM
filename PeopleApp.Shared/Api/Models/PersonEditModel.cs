@@ -1,4 +1,4 @@
-﻿namespace PeopleApp.ViewModels
+﻿namespace PeopleApp.Shared.Api.Models
 {
     public class PersonEditModel
     {

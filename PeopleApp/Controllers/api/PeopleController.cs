@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using PeopleApp.Mappers;
 using PeopleApp.Models;
 using PeopleApp.Services;
-using PeopleApp.ViewModels;
+using PeopleApp.Shared.Api.Models;
 
 namespace PeopleApp.Controllers.api
 {
@@ -19,7 +19,16 @@ namespace PeopleApp.Controllers.api
         public IActionResult GetAll()
         {
             IEnumerable<Person> people = _personRepo.GetAll();
-            List<PersonOutputModel> models = people.Select(p => PersonOutputModel.FromPerson(p)).ToList();
+            var mapper = new PersonMapper();
+            var models = mapper.ToOutputList(people);
+            return Ok(models);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetDetails(long id)
+        {
+            Person person = _personRepo.GetById(id);
+            var mapper = new PersonMapper();
+            var models = mapper.ToOutputModel(person);
             return Ok(models);
         }
         [HttpPost]
@@ -36,8 +45,8 @@ namespace PeopleApp.Controllers.api
 
             //make sure department and location are loaded
             person = _personRepo.GetById(person.Id);
-            var outputModel = PersonOutputModel.FromPerson(person);
-            //return CreatedAtAction()
+            var mapper = new PersonMapper();
+            var outputModel = mapper.ToOutputModel(person);
             return CreatedAtAction("GetDetails", new { id = person.Id }, outputModel);
         }
         [HttpPut("{id}")]
