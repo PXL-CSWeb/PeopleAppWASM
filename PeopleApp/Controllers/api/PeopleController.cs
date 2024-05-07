@@ -22,6 +22,13 @@ namespace PeopleApp.Controllers.api
             List<PersonOutputModel> models = people.Select(p => PersonOutputModel.FromPerson(p)).ToList();
             return Ok(models);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetDetails(long id)
+        {
+            Person person = _personRepo.GetById(id);
+            var outputModel = PersonOutputModel.FromPerson(person);
+            return Ok(outputModel);
+        }
         [HttpPost]
         public IActionResult AddPerson(PersonEditModel model)
         {
