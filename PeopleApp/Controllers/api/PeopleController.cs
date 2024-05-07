@@ -28,8 +28,8 @@ namespace PeopleApp.Controllers.api
         {
             Person person = _personRepo.GetById(id);
             var mapper = new PersonMapper();
-            var models = mapper.ToOutputModel(person);
-            return Ok(models);
+            var model = mapper.ToOutputModel(person);
+            return Ok(model);
         }
         [HttpPost]
         public IActionResult AddPerson(PersonEditModel model)
