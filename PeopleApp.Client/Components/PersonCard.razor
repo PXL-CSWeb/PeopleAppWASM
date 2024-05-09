@@ -1,0 +1,32 @@
+﻿<div class="card m-2 p-2" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title text-primary">
+            @Person.Surname, @Person.Firstname
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            @Person.DepartmentName
+        </h6>
+        <p class="card-text">
+            @Person.LocationCity, @Person.LocationState
+            </p>
+        <NavLink class="btn btn-primary disabled">Edit</NavLink>
+        <button class="btn btn-danger" @onclick="DeletePerson">Delete</button>
+     </div>
+</div>
+
+@code {
+    [Parameter]
+    public PersonOutputModel Person { get; set; }
+
+    [Parameter]
+    public EventCallback<long> PersonDeleted { get; set; }
+
+    [Inject]
+    private HttpClient Http { get; set; }
+
+    private async Task DeletePerson()
+    {
+        await Http.DeleteAsync("api/people/" + Person.Id);
+        await PersonDeleted.InvokeAsync(Person.Id);
+    }
+}

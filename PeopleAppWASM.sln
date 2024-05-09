@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleApp", "PeopleApp\Peop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleApp.Client", "PeopleApp.Client\PeopleApp.Client.csproj", "{12C6BE3B-427D-43C0-963B-E21D166B3E80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleApp.Shared", "PeopleApp.Shared\PeopleApp.Shared.csproj", "{CB3CB358-0891-4D57-8E22-40B09731B81A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleApp.Shared", "PeopleApp.Shared\PeopleApp.Shared.csproj", "{CB3CB358-0891-4D57-8E22-40B09731B81A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
